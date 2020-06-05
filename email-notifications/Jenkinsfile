@@ -26,9 +26,9 @@ node {
     // send email
     if(to != null && !to.isEmpty()) {
        emailext(body: content, mimeType: 'text/html',
-          replyTo: '$DEFAULT_REPLYTO',  // email configuration 에서 설정한 Replyto(CC)
+          replyTo: '$DEFAULT_REPLYTO',  // email configuration 에서 설정한 Reply To List (일명 CC)
           subject: subject,
-          to: '$DEFAULT_RECIPIENTS', // email configuration 에서 설정한 Recipeents
+          to: '$DEFAULT_RECIPIENTS', // email configuration 에서 설정한 	Default Recipients
           attachLog: true )
     }
 
