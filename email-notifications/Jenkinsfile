@@ -1,11 +1,11 @@
 node {
 
-  // config 
-  def to = emailextrecipients([
-          [$class: 'CulpritsRecipientProvider'],
-          [$class: 'DevelopersRecipientProvider'],
-          [$class: 'RequesterRecipientProvider']
-  ])
+  // Commit 한 개발자 정보를 얻고자 하는 경우 아래 to 를 사용
+  //def to = emailextrecipients([
+  //        [$class: 'CulpritsRecipientProvider'],
+  //        [$class: 'DevelopersRecipientProvider'],
+  //        [$class: 'RequesterRecipientProvider']
+  //])
 
   // job
   try {
@@ -26,8 +26,10 @@ node {
     // send email
     if(to != null && !to.isEmpty()) {
        emailext(body: content, mimeType: 'text/html',
-          replyTo: '$DEFAULT_REPLYTO', subject: subject,
-          to: '$DEFAULT_RECIPIENTS', attachLog: true )
+          replyTo: '$DEFAULT_REPLYTO',  // email configuration 에서 설정한 Replyto(CC)
+          subject: subject,
+          to: '$DEFAULT_RECIPIENTS', // email configuration 에서 설정한 Recipeents
+          attachLog: true )
     }
 
     // mark current build as a failure and throw the error
